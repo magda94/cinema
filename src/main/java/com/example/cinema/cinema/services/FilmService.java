@@ -1,5 +1,6 @@
 package com.example.cinema.cinema.services;
 
+import com.example.cinema.cinema.exceptions.handler.FilmExistException;
 import com.example.cinema.cinema.model.Film;
 import com.example.cinema.cinema.repository.FilmRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +37,22 @@ public class FilmService {
 //    }
 
     public List<Film> getAllFilms(){
-        //return repository.findAll();
-          return films;
+        return repository.findAll();
+    }
+
+    public Optional<Film> getFilmByName(String filmName) {
+        return repository.getFilmByFilmName(filmName);
+    }
+
+    public Long addFilm(Film film) {
+        Optional<Film> filmOptional = getFilmByName(film.getFilmName());
+
+        if(filmOptional.isPresent()) {
+            throw new FilmExistException("Film exists in database");
+        }
+
+        film = repository.save(film);
+
+        return film.getId();
     }
 }

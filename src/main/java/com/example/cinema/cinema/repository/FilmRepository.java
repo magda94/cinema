@@ -9,5 +9,6 @@ import java.util.Optional;
 
 @Repository
 public interface FilmRepository extends JpaRepository<Film, Long> {
-    //Optional<Film> getFilmByName(@Param("filmName") String filmName);
+    Optional<Film> getFilmByFilmName(String filmName);
+//    Optional<Film> getFilmByName(@Param("filmName") String filmName);
 }
