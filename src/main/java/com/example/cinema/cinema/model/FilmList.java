@@ -21,11 +21,11 @@ public class FilmList {
         this.films = films;
     }
 
-    public List<Film> getUsers() {
+    public List<Film> getFilms() {
         return films;
     }
 
-    public void setUsers(List<Film> users) {
-        this.films = users;
+    public void setFilms(List<Film> films) {
+        this.films = films;
     }
 }
