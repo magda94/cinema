@@ -10,11 +10,11 @@ import javax.persistence.TableGenerator;
 import javax.validation.constraints.Size;
 
 @Entity
-@TableGenerator(name="userIdGenerator", initialValue= 3)
+@TableGenerator(name="filmIdGenerator", initialValue= 4)
 public class Film {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.TABLE, generator="userIdGenerator")
+    @GeneratedValue(strategy= GenerationType.TABLE, generator="filmIdGenerator")
     private Long id;
 
     @Size(min=1, max=20)
