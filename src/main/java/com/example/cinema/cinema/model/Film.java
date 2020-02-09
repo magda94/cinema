@@ -10,7 +10,7 @@ import javax.persistence.TableGenerator;
 import javax.validation.constraints.Size;
 
 @Entity
-@TableGenerator(name="filmIdGenerator", initialValue= 4)
+@TableGenerator(name="filmIdGenerator", initialValue= 0)
 public class Film {
 
     @Id

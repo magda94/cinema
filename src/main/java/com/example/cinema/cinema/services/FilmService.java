@@ -1,11 +1,13 @@
 package com.example.cinema.cinema.services;
 
 import com.example.cinema.cinema.exceptions.handler.FilmExistException;
+import com.example.cinema.cinema.exceptions.handler.FilmNotFoundException;
 import com.example.cinema.cinema.model.Film;
 import com.example.cinema.cinema.repository.FilmRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.swing.text.html.Option;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -40,8 +42,12 @@ public class FilmService {
         return repository.findAll();
     }
 
-    public Optional<Film> getFilmByName(String filmName) {
+    public Optional<Film> getFilmByName(final String filmName) {
         return repository.getFilmByFilmName(filmName);
+    }
+
+    public Optional<Film> getFilmById(final Long id) {
+        return repository.getFilmById(id);
     }
 
     public Long addFilm(Film film) {
@@ -54,5 +60,22 @@ public class FilmService {
         film = repository.save(film);
 
         return film.getId();
+    }
+
+    public void deleteFilmWithId(Long id) {
+        if (getFilmById(id).isEmpty()) {
+            throw new FilmNotFoundException("Film with id: " + id + " doesn't exist in database");
+        }
+
+        repository.deleteById(id);
+    }
+
+    public void updateFilmWithId(Film film, Long id) {
+        if (getFilmById(id).isEmpty()) {
+            throw new FilmNotFoundException("There is no film with id: " + id);
+        }
+
+        film.setId(id);
+        repository.save(film);
     }
 }
