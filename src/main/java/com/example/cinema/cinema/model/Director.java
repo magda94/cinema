@@ -21,6 +21,8 @@ public class Director {
     @Size(min=1, max=20)
     private String lastName;
 
+    public Director() {}
+
     public Director(long id, String firstName, String lastName) {
         this.id = id;
         this.firstName = firstName;
