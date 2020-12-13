@@ -20,13 +20,7 @@ public class DirectorService {
 
     private static List<Director> directors;
 
-    public DirectorService() {
-        if (directors == null) {
-            directors = new ArrayList<>();
-            directors.add(new Director(1L, "Steven", "Spielberg"));
-            directors.add(new Director(2L, "Andrzej", "Wajda"));
-        }
-    }
+    public DirectorService() { }
 
     public DirectorService(DirectorRepository repository) {
         this.repository = repository;

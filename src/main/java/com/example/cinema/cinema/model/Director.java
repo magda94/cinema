@@ -8,7 +8,7 @@ import javax.persistence.TableGenerator;
 import javax.validation.constraints.Size;
 
 @Entity
-@TableGenerator(name = "directorIdGenerator", initialValue=2)
+@TableGenerator(name = "directorIdGenerator", initialValue=0)
 public class Director {
 
     @Id

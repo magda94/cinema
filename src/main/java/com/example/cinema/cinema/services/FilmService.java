@@ -20,14 +20,7 @@ public class FilmService {
 
     private static List<Film> films;
 
-    public FilmService(){
-        if(films == null){
-            films = new ArrayList<>();
-            films.add(new Film(1L,"Rambo"));
-            films.add(new Film(2L,"Titanic"));
-            films.add(new Film(3L, "Terminator"));
-        }
-    }
+    public FilmService(){ }
 
 
     public FilmService(FilmRepository repository){
