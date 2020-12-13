@@ -17,10 +17,12 @@ dependencies {
 	compile('com.fasterxml.jackson.dataformat:jackson-dataformat-xml')
 	compile('org.springframework.boot:spring-boot-starter-web')
 	compile('org.springframework.boot:spring-boot-starter')
-	//compile('org.springframework.boot:spring-boot-starter-data-jpa')
+	compile('org.springframework.boot:spring-boot-starter-data-jpa')
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
+	runtime('org.springframework.boot:spring-boot-devtools')
+	runtime('com.h2database:h2')
 }
 
 test {
