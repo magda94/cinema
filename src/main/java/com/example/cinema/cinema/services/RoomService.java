@@ -1,14 +1,11 @@
 package com.example.cinema.cinema.services;
 
-import com.example.cinema.cinema.exceptions.handler.FilmExistException;
-import com.example.cinema.cinema.exceptions.handler.FilmNotFoundException;
 import com.example.cinema.cinema.exceptions.handler.RoomExistException;
 import com.example.cinema.cinema.model.Room;
 import com.example.cinema.cinema.repository.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
 
