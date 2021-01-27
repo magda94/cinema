@@ -1,5 +1,7 @@
 package com.example.cinema.cinema.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -28,7 +30,10 @@ public class Room {
     @ManyToMany
     @JoinTable(name="rooms_films",
     joinColumns = @JoinColumn(name = "room_id"), inverseJoinColumns = @JoinColumn(name = "film_id"))
+            @JsonBackReference
     Set<Film> filmSet = new HashSet<>();
+
+    //TODO show which film for each room
 
     public void addFilm(Film film) {
         this.filmSet.add(film);

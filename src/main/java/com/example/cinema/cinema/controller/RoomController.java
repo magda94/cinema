@@ -15,45 +15,47 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Optional;
 
 @RestController
+@RequestMapping("/api/rooms")
 public class RoomController {
 
     @Autowired
     RoomService roomService;
 
-    @GetMapping("/rooms")
+    @GetMapping("/all")
     public RoomList getRooms() {
         return new RoomList(roomService.getAllRooms());
     }
 
-    @GetMapping("/rooms/{id}")
+    @GetMapping("/{id}")
     public Room getRoomById(@PathVariable("id") long id) {
         return roomService.getRoomById(id)
                 .orElseThrow(() -> new RoomExistException("There is no room with id: " + id));
     }
 
-    @GetMapping("/rooms/roomNumber/{roomNumber}")
+    @GetMapping("/roomNumber/{roomNumber}")
     public Room getRoomByRoomNumber(@PathVariable("roomNumber") int roomNumber) {
         return roomService.getRoomByRoomNumber(roomNumber)
                 .orElseThrow(() -> new RoomExistException("There is no room with number: " + roomNumber));
     }
 
-    @PostMapping("/rooms")
+    @PostMapping("")
     public ResponseEntity addRoom(@RequestBody Room room) {
         return ResponseEntity.status(HttpStatus.CREATED).body(roomService.addRoom(room));
     }
 
-    @PutMapping("/rooms/{id}")
+    @PutMapping("/{id}")
     public void updateRoom(@RequestBody Room room, @PathVariable("id") long id) {
         roomService.updateRoomWithId(room, id);
     }
 
-    @DeleteMapping("/rooms/{id}")
+    @DeleteMapping("/{id}")
     public void deleteRoom(@PathVariable("id") long id) {
         roomService.deleteRoomWithId(id);
     }
