@@ -5,10 +5,10 @@ import com.example.cinema.cinema.exceptions.handler.DirectorNotFoundException;
 import com.example.cinema.cinema.model.Director;
 import com.example.cinema.cinema.model.DirectorList;
 import com.example.cinema.cinema.repository.DirectorRepository;
+import com.example.cinema.cinema.repository.FilmRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,6 +17,9 @@ public class DirectorService {
 
     @Autowired
     DirectorRepository repository;
+
+    @Autowired
+    FilmRepository filmRepository;
 
     private static List<Director> directors;
 
@@ -31,7 +34,7 @@ public class DirectorService {
         return repository.findAll();
     }
 
-    public Long addDirector(Director director) {
+    public Director addDirector(Director director) {
         List<Director> directorsList = getAllDirectors();
 
         Optional<Director> seachedDirector = directorsList.stream()
@@ -42,7 +45,7 @@ public class DirectorService {
         if (seachedDirector.isPresent())
             throw new DirectorExistException("Director exists in database");
 
-        return repository.save(director).getId();
+        return repository.save(director);
     }
 
     public DirectorList getAllDirectorsWithFirstName(String firstName) {

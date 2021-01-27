@@ -3,12 +3,11 @@ package com.example.cinema.cinema.services;
 import com.example.cinema.cinema.exceptions.handler.FilmExistException;
 import com.example.cinema.cinema.exceptions.handler.FilmNotFoundException;
 import com.example.cinema.cinema.model.Film;
+import com.example.cinema.cinema.repository.DirectorRepository;
 import com.example.cinema.cinema.repository.FilmRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.swing.text.html.Option;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,6 +16,9 @@ public class FilmService {
 
     @Autowired
     FilmRepository repository;
+
+    @Autowired
+    DirectorRepository directorRepository;
 
     private static List<Film> films;
 
@@ -43,16 +45,22 @@ public class FilmService {
         return repository.getFilmById(id);
     }
 
-    public Long addFilm(Film film) {
+    public Film addFilm(Film film) {
         Optional<Film> filmOptional = getFilmByName(film.getFilmName());
 
         if(filmOptional.isPresent()) {
             throw new FilmExistException("Film exists in database");
         }
 
-        film = repository.save(film);
+        //TODO check if Director exist and if not remove request
 
-        return film.getId();
+//        Director director = film.getDirector();
+//
+//        Film newFilm = new Film();
+//        newFilm.setFilmName(film.getFilmName());
+//        newFilm.setDirector(director);
+
+        return repository.save(film);
     }
 
     public void deleteFilmWithId(Long id) {

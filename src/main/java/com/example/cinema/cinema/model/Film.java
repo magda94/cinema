@@ -1,9 +1,9 @@
 package com.example.cinema.cinema.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.stereotype.Component;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,18 +12,16 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.TableGenerator;
 import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@TableGenerator(name="filmIdGenerator", initialValue= 0)
 @Getter @Setter
 public class Film {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.TABLE, generator="filmIdGenerator")
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
 
     @Size(min=1, max=20)
@@ -33,8 +31,9 @@ public class Film {
     Set<Room> roomSet = new HashSet<>();
 
     @ManyToOne
-    @JsonIgnore
+//    @JsonIgnore
     @JoinColumn(name="director_id")
+    @JsonBackReference
     public Director director;
 
 
@@ -43,6 +42,11 @@ public class Film {
     public Film(long id, String filmName) {
         this.id = id;
         this.filmName = filmName;
+    }
+
+    public Film(String filName, Director director) {
+        this.filmName = filName;
+        this.director = director;
     }
 
     public Long getId() {

@@ -1,23 +1,25 @@
 package com.example.cinema.cinema.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.Getter;
+import lombok.Setter;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.TableGenerator;
 import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@TableGenerator(name = "directorIdGenerator", initialValue=0)
 public class Director {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE, generator = "directorIdGenerator")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Size(min=1, max=15)
@@ -26,14 +28,21 @@ public class Director {
     @Size(min=1, max=20)
     private String lastName;
 
-    @OneToMany(mappedBy = "director")
-    @JsonIgnore
-    private Set<Film> filmSet = new HashSet<>();
+    @OneToMany(mappedBy = "director", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//    @JsonIgnore
+    @Getter @Setter
+    @JsonManagedReference
+    private Set<Film> films = new HashSet<>();
 
     public Director() {}
 
     public Director(long id, String firstName, String lastName) {
         this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
+    public Director(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
     }
@@ -62,11 +71,7 @@ public class Director {
         this.lastName = lastName;
     }
 
-    public Set<Film> getFilms() {
-        return filmSet;
-    }
-
     public void addFilm(Film film) {
-        this.filmSet.add(film);
+        this.films.add(film);
     }
 }
