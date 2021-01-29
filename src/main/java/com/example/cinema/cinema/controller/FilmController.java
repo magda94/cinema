@@ -49,7 +49,7 @@ public class FilmController {
 
     @PostMapping("")
     public ResponseEntity<Film> addFilm(@RequestBody Film film) {
-        return new ResponseEntity<Film>(filmService.addFilm(film), HttpStatus.CREATED);
+        return new ResponseEntity<>(filmService.addFilm(film), HttpStatus.CREATED);
     }
 
     @DeleteMapping("/{id}")
@@ -58,8 +58,8 @@ public class FilmController {
     }
 
     @PutMapping("/{id}")
-    public void updateFilm(@RequestBody Film film, @PathVariable("id") Long id) {
-        filmService.updateFilmWithId(film, id);
+    public ResponseEntity<Film> updateFilm(@RequestBody Film film, @PathVariable("id") Long id) {
+        return new ResponseEntity<>(filmService.updateFilmWithId(film, id), HttpStatus.OK);
     }
 
 }

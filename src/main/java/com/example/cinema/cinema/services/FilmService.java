@@ -1,7 +1,9 @@
 package com.example.cinema.cinema.services;
 
+import com.example.cinema.cinema.exceptions.handler.DirectorNotFoundException;
 import com.example.cinema.cinema.exceptions.handler.FilmExistException;
 import com.example.cinema.cinema.exceptions.handler.FilmNotFoundException;
+import com.example.cinema.cinema.model.Director;
 import com.example.cinema.cinema.model.Film;
 import com.example.cinema.cinema.repository.DirectorRepository;
 import com.example.cinema.cinema.repository.FilmRepository;
@@ -52,13 +54,11 @@ public class FilmService {
             throw new FilmExistException("Film exists in database");
         }
 
-        //TODO check if Director exist and if not remove request
+        Optional<Director> foundDirector = directorRepository.findById(film.getDirector().getId());
 
-//        Director director = film.getDirector();
-//
-//        Film newFilm = new Film();
-//        newFilm.setFilmName(film.getFilmName());
-//        newFilm.setDirector(director);
+        if (foundDirector.isEmpty()) {
+            throw new DirectorNotFoundException("The film can't be added because of the director doesn't exist");
+        }
 
         return repository.save(film);
     }
@@ -71,12 +71,12 @@ public class FilmService {
         repository.deleteById(id);
     }
 
-    public void updateFilmWithId(Film film, Long id) {
+    public Film updateFilmWithId(Film film, Long id) {
         if (getFilmById(id).isEmpty()) {
             throw new FilmNotFoundException("There is no film with id: " + id);
         }
 
         film.setId(id);
-        repository.save(film);
+        return repository.save(film);
     }
 }

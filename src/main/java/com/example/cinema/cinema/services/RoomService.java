@@ -33,24 +33,22 @@ public class RoomService {
         return repository.getRoomByRoomNumber(roomNumber);
     }
 
-    public Long addRoom(Room room) {
+    public Room addRoom(Room room) {
         Optional<Room> result = repository.getRoomByRoomNumber(room.getRoomNumber());
 
         if (result.isPresent()) {
             throw new RoomExistException("Room exists in database");
         }
 
-        room = repository.save(room);
-
-        return room.getId();
+        return repository.save(room);
     }
 
-    public void updateRoomWithId(Room room, long id) {
+    public Room updateRoomWithId(Room room, long id) {
         if (getRoomById(id).isEmpty()) {
             throw new RoomExistException("There is no room with id: " + id);
         }
         room.setId(id);
-        repository.save(room);
+        return repository.save(room);
     }
 
     public void deleteRoomWithId(long id) {

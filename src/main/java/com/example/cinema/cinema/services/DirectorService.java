@@ -48,6 +48,16 @@ public class DirectorService {
         return repository.save(director);
     }
 
+    public Director updateDirector(Director director, Long id) {
+        if(repository.findById(id).isEmpty()) {
+            throw new DirectorNotFoundException("The director doesn't exist in repository");
+        }
+
+        director.setId(id);
+
+        return repository.save(director);
+    }
+
     public DirectorList getAllDirectorsWithFirstName(String firstName) {
        return new DirectorList(repository.findAllByFirstName(firstName));
     }

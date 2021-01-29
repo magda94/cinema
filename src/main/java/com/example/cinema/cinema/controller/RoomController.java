@@ -1,12 +1,10 @@
 package com.example.cinema.cinema.controller;
 
-import com.example.cinema.cinema.exceptions.handler.FilmNotFoundException;
 import com.example.cinema.cinema.exceptions.handler.RoomExistException;
 import com.example.cinema.cinema.model.Room;
 import com.example.cinema.cinema.model.RoomList;
 import com.example.cinema.cinema.services.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -16,10 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/rooms")
@@ -46,13 +41,13 @@ public class RoomController {
     }
 
     @PostMapping("")
-    public ResponseEntity addRoom(@RequestBody Room room) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(roomService.addRoom(room));
+    public ResponseEntity<Room> addRoom(@RequestBody Room room) {
+        return new ResponseEntity<>(roomService.addRoom(room), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public void updateRoom(@RequestBody Room room, @PathVariable("id") long id) {
-        roomService.updateRoomWithId(room, id);
+    public ResponseEntity<Room> updateRoom(@RequestBody Room room, @PathVariable("id") long id) {
+        return new ResponseEntity<>(roomService.updateRoomWithId(room, id), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
