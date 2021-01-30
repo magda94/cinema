@@ -1,8 +1,8 @@
-package com.example.cinema.cinema.services;
+package com.example.cinema.cinema.services.cinemaproperty;
 
-import com.example.cinema.cinema.exceptions.handler.RoomExistException;
-import com.example.cinema.cinema.model.Room;
-import com.example.cinema.cinema.repository.RoomRepository;
+import com.example.cinema.cinema.exceptions.handler.cinemaproperty.RoomExistException;
+import com.example.cinema.cinema.model.cinemaproperty.Room;
+import com.example.cinema.cinema.repository.cinemaproperty.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

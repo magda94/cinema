@@ -1,9 +1,9 @@
-package com.example.cinema.cinema.controller;
+package com.example.cinema.cinema.controller.cinemaproperty;
 
-import com.example.cinema.cinema.model.Director;
-import com.example.cinema.cinema.model.DirectorList;
-import com.example.cinema.cinema.services.DirectorService;
-import com.example.cinema.cinema.services.FilmService;
+import com.example.cinema.cinema.model.cinemaproperty.Director;
+import com.example.cinema.cinema.model.cinemaproperty.DirectorList;
+import com.example.cinema.cinema.services.cinemaproperty.DirectorService;
+import com.example.cinema.cinema.services.cinemaproperty.FilmService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

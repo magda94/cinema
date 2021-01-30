@@ -1,5 +1,6 @@
-package com.example.cinema.cinema.model;
+package com.example.cinema.cinema.model.cinemaproperty;
 
+import com.example.cinema.cinema.model.cinemaproperty.Film;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;

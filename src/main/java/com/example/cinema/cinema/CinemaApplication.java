@@ -1,9 +1,8 @@
 package com.example.cinema.cinema;
 
-import com.example.cinema.cinema.model.Director;
-import com.example.cinema.cinema.model.Film;
-import com.example.cinema.cinema.repository.DirectorRepository;
-import com.example.cinema.cinema.repository.FilmRepository;
+import com.example.cinema.cinema.model.cinemaproperty.Director;
+import com.example.cinema.cinema.repository.cinemaproperty.DirectorRepository;
+import com.example.cinema.cinema.repository.cinemaproperty.FilmRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

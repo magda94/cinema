@@ -1,4 +1,4 @@
-package com.example.cinema.cinema.exceptions.handler;
+package com.example.cinema.cinema.exceptions.handler.cinemaproperty;
 
 import java.util.function.Supplier;
 

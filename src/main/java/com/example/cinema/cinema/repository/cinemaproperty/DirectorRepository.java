@@ -1,7 +1,7 @@
-package com.example.cinema.cinema.repository;
+package com.example.cinema.cinema.repository.cinemaproperty;
 
 
-import com.example.cinema.cinema.model.Director;
+import com.example.cinema.cinema.model.cinemaproperty.Director;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;

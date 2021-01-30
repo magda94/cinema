@@ -1,9 +1,9 @@
-package com.example.cinema.cinema.controller;
+package com.example.cinema.cinema.controller.cinemaproperty;
 
-import com.example.cinema.cinema.exceptions.handler.RoomExistException;
-import com.example.cinema.cinema.model.Room;
-import com.example.cinema.cinema.model.RoomList;
-import com.example.cinema.cinema.services.RoomService;
+import com.example.cinema.cinema.exceptions.handler.cinemaproperty.RoomExistException;
+import com.example.cinema.cinema.model.cinemaproperty.Room;
+import com.example.cinema.cinema.model.cinemaproperty.RoomList;
+import com.example.cinema.cinema.services.cinemaproperty.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -1,11 +1,11 @@
-package com.example.cinema.cinema.services;
+package com.example.cinema.cinema.services.cinemaproperty;
 
-import com.example.cinema.cinema.exceptions.handler.DirectorExistException;
-import com.example.cinema.cinema.exceptions.handler.DirectorNotFoundException;
-import com.example.cinema.cinema.model.Director;
-import com.example.cinema.cinema.model.DirectorList;
-import com.example.cinema.cinema.repository.DirectorRepository;
-import com.example.cinema.cinema.repository.FilmRepository;
+import com.example.cinema.cinema.exceptions.handler.cinemaproperty.DirectorExistException;
+import com.example.cinema.cinema.exceptions.handler.cinemaproperty.DirectorNotFoundException;
+import com.example.cinema.cinema.model.cinemaproperty.Director;
+import com.example.cinema.cinema.model.cinemaproperty.DirectorList;
+import com.example.cinema.cinema.repository.cinemaproperty.DirectorRepository;
+import com.example.cinema.cinema.repository.cinemaproperty.FilmRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

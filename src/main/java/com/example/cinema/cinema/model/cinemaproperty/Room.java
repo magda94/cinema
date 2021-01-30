@@ -1,8 +1,8 @@
-package com.example.cinema.cinema.model;
+package com.example.cinema.cinema.model.cinemaproperty;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.Entity;
@@ -19,6 +19,7 @@ import java.util.Set;
 @Entity
 @TableGenerator(name = "roomIdGenerator")
 @Getter @Setter
+@NoArgsConstructor
 public class Room {
 
     @Id

@@ -1,11 +1,10 @@
-package com.example.cinema.cinema.controller;
+package com.example.cinema.cinema.controller.cinemaproperty;
 
-import com.example.cinema.cinema.exceptions.handler.FilmNotFoundException;
-import com.example.cinema.cinema.model.Film;
-import com.example.cinema.cinema.model.FilmList;
-import com.example.cinema.cinema.repository.DirectorRepository;
-import com.example.cinema.cinema.services.DirectorService;
-import com.example.cinema.cinema.services.FilmService;
+import com.example.cinema.cinema.exceptions.handler.cinemaproperty.FilmNotFoundException;
+import com.example.cinema.cinema.model.cinemaproperty.Film;
+import com.example.cinema.cinema.model.cinemaproperty.FilmList;
+import com.example.cinema.cinema.services.cinemaproperty.DirectorService;
+import com.example.cinema.cinema.services.cinemaproperty.FilmService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
