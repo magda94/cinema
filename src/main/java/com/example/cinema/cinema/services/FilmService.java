@@ -1,14 +1,15 @@
 package com.example.cinema.cinema.services;
 
+import com.example.cinema.cinema.exceptions.handler.DirectorNotFoundException;
 import com.example.cinema.cinema.exceptions.handler.FilmExistException;
 import com.example.cinema.cinema.exceptions.handler.FilmNotFoundException;
+import com.example.cinema.cinema.model.Director;
 import com.example.cinema.cinema.model.Film;
+import com.example.cinema.cinema.repository.DirectorRepository;
 import com.example.cinema.cinema.repository.FilmRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.swing.text.html.Option;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,16 +19,12 @@ public class FilmService {
     @Autowired
     FilmRepository repository;
 
+    @Autowired
+    DirectorRepository directorRepository;
+
     private static List<Film> films;
 
-    public FilmService(){
-        if(films == null){
-            films = new ArrayList<>();
-            films.add(new Film(1L,"Rambo"));
-            films.add(new Film(2L,"Titanic"));
-            films.add(new Film(3L, "Terminator"));
-        }
-    }
+    public FilmService(){ }
 
 
     public FilmService(FilmRepository repository){
@@ -50,16 +47,20 @@ public class FilmService {
         return repository.getFilmById(id);
     }
 
-    public Long addFilm(Film film) {
+    public Film addFilm(Film film) {
         Optional<Film> filmOptional = getFilmByName(film.getFilmName());
 
         if(filmOptional.isPresent()) {
             throw new FilmExistException("Film exists in database");
         }
 
-        film = repository.save(film);
+        Optional<Director> foundDirector = directorRepository.findById(film.getDirector().getId());
 
-        return film.getId();
+        if (foundDirector.isEmpty()) {
+            throw new DirectorNotFoundException("The film can't be added because of the director doesn't exist");
+        }
+
+        return repository.save(film);
     }
 
     public void deleteFilmWithId(Long id) {
@@ -70,12 +71,12 @@ public class FilmService {
         repository.deleteById(id);
     }
 
-    public void updateFilmWithId(Film film, Long id) {
+    public Film updateFilmWithId(Film film, Long id) {
         if (getFilmById(id).isEmpty()) {
             throw new FilmNotFoundException("There is no film with id: " + id);
         }
 
         film.setId(id);
-        repository.save(film);
+        return repository.save(film);
     }
 }
